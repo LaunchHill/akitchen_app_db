@@ -1,0 +1,3 @@
+class AkRecipeIngredientTranslationsController < ApplicationController
+  autocomplete :ak_recipe_ingredient_translation, :title
+end
