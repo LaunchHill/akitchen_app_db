@@ -55,3 +55,33 @@ response:
           }
         ]
 ```
+### BEST_THIS_WEEK
+```
+curl -X  -d "locale=en" GET http://115.28.163.219:8080/best_this_week
+```
+```
+params: 
+        {
+          locale: "en" # optianal
+        }
+response:
+        {
+          recipe_ids: [1,2],
+          album_ids: [1,2]
+        }
+```
+### YOU_MAY_LIKE
+```
+curl -X  -d "locale=en" GET http://115.28.163.219:8080/you_may_like
+```
+```
+params: {
+          recipe_limit: 10,   #default is 10
+          album_limit: 10,    #default is 10
+        }
+response:
+        {
+          recipe_ids: [1,2],
+          album_ids: [1,2]
+        }        
+```
