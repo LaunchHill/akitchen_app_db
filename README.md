@@ -6,12 +6,21 @@ curl -X GET -d "locale=zh_CN&q=风" http://115.28.163.219:8080/tag_search.json
 params: 
         {
           locale: en,     # or zh_CN
-          q: "风"          # 提交的关键字
+          q: "风",        # 提交的关键字
+          per_page: 10    # default is 25
         }
 response:
         {
-          "tags":["中文风味4","中文风味3","中文风味1","中文风味2"],
-          "recipe_ids":[156]
+          "tags":["中文风味4","英文风味4","中文风味3","英文风味3"],
+          "paginate_meta":            #分页
+          {
+            "current_page":1,
+            "next_page":2,
+            "prev_page":null,
+            "total_pages":2,
+            "total_count":11            #总数量
+          },
+          "recipes":[1,2,3,4,5,6,7]
         }
 ```
 ### 即时搜索菜谱

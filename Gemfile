@@ -53,3 +53,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'ransack'
 gem 'rails-jquery-autocomplete', '1.0.2' # Fixed for deployment
 gem "jquery-ui-rails"
+gem 'kaminari'

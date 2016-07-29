@@ -1,2 +1,5 @@
 json.tags @tags
-json.recipe_ids @recipe_ids
+json.paginate_meta do
+  paginate_meta_attributes(json, @recipes)
+end
+json.recipes_ids @recipes.ids
