@@ -63,6 +63,9 @@ curl -X GET -d "locale=en" GET http://115.28.163.219:8080/best_this_week
 params: 
         {
           locale: "en" # optianal
+          taste_tag: "good",
+          limit: 10,
+          offset: 20
         }
 response:
         {
@@ -76,6 +79,7 @@ curl -X GET -d "locale=en" GET http://115.28.163.219:8080/you_may_like
 ```
 ```
 params: {
+          taste_tag: "good",
           recipe_limit: 10,   #default is 10
           album_limit: 10,    #default is 10
         }
