@@ -25,7 +25,7 @@ class WelcomeController < ApplicationController
     album_limit = 10
     album_limit = params[:album_limit].to_i if params[:album_limit]
 
-    @album_ids =AlbumRecipe.where(recipe_id: tags.pluck(:recipe_id).uniq).ids.sample(album_limit)
+    @album_ids =AlbumRecipe.where(recipe_id: tags.pluck(:recipe_id).uniq).pluck(:album_id).uniq.sample(album_limit)
 
     render json: {recipe_ids: @recipe_ids, album_ids: @album_ids}
   end
