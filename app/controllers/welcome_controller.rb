@@ -19,8 +19,13 @@ class WelcomeController < ApplicationController
 
   def you_may_like
     tags = AkRecipeTag.ransack(content_cont: params[:taste_tag]).result
-    @recipe_ids = tags.pluck(:recipe_id).uniq.sample(params[:recipe_limit].to_i || 10)
-    @album_ids =AlbumRecipe.where(recipe_id: tags.pluck(:recipe_id).uniq).ids.sample(params[:album_limit].to_i || 10)
+    recipe_limit = 10
+    recipe_limit = params[:recipe_limit].to_i if params[:recipe_limit]
+    @recipe_ids = tags.pluck(:recipe_id).uniq.sample(recipe_limit)
+    album_limit = 10
+    album_limit = params[:album_limit].to_i if params[:album_limit]
+
+    @album_ids =AlbumRecipe.where(recipe_id: tags.pluck(:recipe_id).uniq).ids.sample(album_limit)
 
     render json: {recipe_ids: @recipe_ids, album_ids: @album_ids}
   end
