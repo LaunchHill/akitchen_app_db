@@ -1,6 +1,6 @@
 ### 根据tag返回tags和recipe的id列表
 ```
-curl -X GET -d "locale=zh_CN&q=风" http://115.28.163.219:8080/tag_search.json
+curl -X GET -d "locale=zh_CN&q=风&per_page=10&page=2" http://115.28.163.219:8080/tag_search.json
 ```
 ```
 params: 
