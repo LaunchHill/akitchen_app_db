@@ -57,7 +57,7 @@ response:
 ```
 ### BEST_THIS_WEEK
 ```
-curl -X GET -d "locale=en" GET http://115.28.163.219:8080/best_this_week
+curl -X GET -d "locale=en" GET http://115.28.163.219:8080/best_this_week.json
 ```
 ```
 params: 
@@ -75,7 +75,7 @@ response:
 ```
 ### YOU_MAY_LIKE
 ```
-curl -X GET -d "locale=en" GET http://115.28.163.219:8080/you_may_like
+curl -X GET -d "locale=en" GET http://115.28.163.219:8080/you_may_like.json
 ```
 ```
 params: {

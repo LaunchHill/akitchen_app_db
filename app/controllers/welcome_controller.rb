@@ -8,8 +8,10 @@ class WelcomeController < ApplicationController
   def best_this_week
     tags = AkRecipeTag.ransack(locale_eq: params[:locale], content_cont: "BEST_THIS_WEEK").result
     taste_tags = AkRecipeTag.ransack(locale_eq: params[:locale], content_cont: params[:taste_tag]).result
-    offset = params[:offset].to_i || 0
-    length = params[:limit].to_i || 10
+    offset = 0
+    offset = params[:offset].to_i if params[:offset]
+    length = 10
+    length = params[:limit].to_i if params[:limit]
     @recipe_ids = (tags.pluck(:recipe_id).uniq & taste_tags.pluck(:recipe_id).uniq)[offset, length]
 
     @album_ids = AlbumRecipe.where(recipe_id: @recipe_ids).pluck(:album_id).uniq
