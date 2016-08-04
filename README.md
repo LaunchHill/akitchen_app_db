@@ -70,8 +70,12 @@ params:
         }
 response:
         {
-          recipe_ids: [1,2],
-          album_ids: [1,2]
+          bizs: 
+          [
+            {biz_id: biz_type},
+            {1: 1},
+            ...
+          ]
         }
 ```
 ### YOU_MAY_LIKE
