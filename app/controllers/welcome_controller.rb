@@ -21,7 +21,7 @@ class WelcomeController < ApplicationController
 
     # get the same recipe_id in tags and @taste_tags
     @biz_ids = tags.pluck(:biz_id).uniq & @taste_tags.pluck(:biz_id).uniq
-    @bizs = AkRecipeTag.where(biz_id: @biz_ids, content: "BEST_THIS_WEEK", deleted_at: nil).order(sort: :desc)
+    @bizs = AkRecipeTag.where(biz_id: @biz_ids, content: "BEST_THIS_WEEK", deleted_at: nil).order(sort: :desc)[offset, length]
     hash_bizs = []
     @bizs.each do |biz|
       hash_bizs << {biz_id: biz.biz_id, biz_type: biz.biz_type}
