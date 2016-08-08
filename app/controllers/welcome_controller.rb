@@ -24,7 +24,7 @@ class WelcomeController < ApplicationController
     @bizs = AkRecipeTag.where(biz_id: @biz_ids, content: "BEST_THIS_WEEK", deleted_at: nil).order(sort: :desc)
     hash_bizs = []
     @bizs.each do |biz|
-      hash_bizs << Hash[biz.biz_id => biz.biz_type]
+      hash_bizs << {biz_id: biz.biz_id, biz_type: biz.biz_type}
     end
     render json: {bizs: hash_bizs}
   end

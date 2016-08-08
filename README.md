@@ -72,8 +72,10 @@ response:
         {
           bizs: 
           [
-            {biz_id: biz_type},
-            {1: 1},
+            {
+              biz_id: 1,
+              biz_type: 1
+            },
             ...
           ]
         }
