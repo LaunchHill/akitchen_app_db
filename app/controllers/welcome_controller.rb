@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
     @recipe_ids = AkRecipeTag.where(content: @tags, deleted_at: nil).pluck(:biz_id).uniq
     @recipes_find_by_title = AkRecipeTranslation.ransack(locale_eq: params[:locale], title_cont: params[:q]).result
     @recipes_find_by_title.each do |re|
-      @recipe_ids = @recipe_ids + [re.recipe_id]
+      @recipe_ids = @recipe_ids << AkRecipeTag.where(recipe_id: recipe_id).first
     end
     @recipes = paginate(AkRecipe.where(id: @recipe_ids))
   end
@@ -47,9 +47,7 @@ class WelcomeController < ApplicationController
     recipe_limit = params[:recipe_limit].to_i if params[:recipe_limit]
     @recipe_ids = @tags.pluck(:biz_id).uniq.sample(recipe_limit)
 
-    AkRecipe.limit(4).each {|ak| 
-      @recipe_ids = @recipe_ids + [ak.id] if @recipe_ids.size < 4
-    }
+    @recipe_ids.merge(AkRecipeTag.limit(4))
 
     album_limit = 10
     album_limit = params[:album_limit].to_i if params[:album_limit]
