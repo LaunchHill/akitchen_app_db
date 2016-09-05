@@ -2,7 +2,7 @@
 lock '3.6.0'
 
 set :application, 'akitchen'
-set :repo_url, 'git@github.com:ken-wong/akitchen_app_db.git'
+set :repo_url, 'git@github.com:launchhill/akitchen_app_db.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
