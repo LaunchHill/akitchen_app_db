@@ -47,7 +47,7 @@ class WelcomeController < ApplicationController
     recipe_limit = params[:recipe_limit].to_i if params[:recipe_limit]
     @recipe_ids = @tags.pluck(:biz_id).uniq.sample(recipe_limit)
 
-    AkRecipe.all.order('rand()').limit(20).pluck(:id).each do |ak|
+    AkRecipe.where(status: 1).order('rand()').limit(20).pluck(:id).each do |ak|
       @recipe_ids << ak
     end
     album_limit = 10
