@@ -2,7 +2,7 @@ class WelcomeController < ApplicationController
   def tag_search
     @tags = AkRecipeTag.ransack(locale_eq: params[:locale], content_cont: params[:q]).result.pluck(:content).uniq.first(5)
     @recipe_ids = AkRecipeTag.where(content: @tags, deleted_at: nil).pluck(:biz_id).uniq
-    @recipes_find_by_title = AkRecipeTranslation.ransack(locale_eq: params[:locale], title_cont: params[:q]).result
+    @recipes_find_by_title = AkRecipeTranslation.ransack(title_cont: params[:q]).result
     @recipes_find_by_title.each do |re|
       @recipe_ids << re.recipe_id
     end
@@ -47,7 +47,7 @@ class WelcomeController < ApplicationController
     recipe_limit = params[:recipe_limit].to_i if params[:recipe_limit]
     @recipe_ids = @tags.pluck(:biz_id).uniq.sample(recipe_limit)
 
-
+    @recipe_ids = @recipe_ids.merge(Recipe.limit(4).pluck(:id))
     album_limit = 10
     album_limit = params[:album_limit].to_i if params[:album_limit]
     @album_ids =AlbumRecipe.where(recipe_id: @tags.pluck(:biz_id).uniq, deleted_at: nil).pluck(:album_id).uniq.sample(album_limit)
